@@ -291,6 +291,59 @@ paths:
               examples:
                 Ejemplo:
                   $ref: '#/components/examples/tag_bad_request_response_example'
+
+  /tags/{id}:
+    x-apigen-binding:
+      model: Patient
+    get:
+      summary: get a tag by id
+      operationId: getTag
+      tags:
+        - Tags
+      parameters:
+        - $ref: "#/components/parameters/string_id_param"
+        - $ref: "#/components/parameters/select_param"
+        - $ref: "#/components/parameters/exclude_param"
+        - $ref: "#/components/parameters/expand_param"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_tag"
+              examples:
+                Ejemplo:
+                  $ref: '#/components/examples/get_tag_response_example' 
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_tag"
+              examples:
+                Ejemplo:
+                  $ref: '#/components/examples/standard_not_found_response_example'
+    put:
+      summary: update a Tag
+      operationId: updateTag
+      tags:
+        - Tags
+      parameters:
+        - $ref: "#/components/parameters/string_id_param"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/update_tag"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_tag"
+
 components:
   parameters:
     string_id_param:
@@ -609,6 +662,17 @@ components:
         description:
           type: string
           example: 'MongoDb specialist'
+    update_tag:
+      x-apigen-mapping:
+        model: Tag
+      type: object
+      properties:
+        title:
+          type: string
+          example: 'Mongo'
+        description:
+          type: string
+          example: 'Mongo database specialist'
 
   examples:
     standard_not_found_response_example:
@@ -719,3 +783,14 @@ components:
           errors:
           - code: 1000
             message: Name '% s' cannot contain a null value
+    get_tag_response_example:
+      value:
+        result:
+          status: true
+          http_code: 200
+          info: 'OK'
+          trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
+        data:
+          id: '6152f5065e6a5d0530211f77'
+          title: 'Tag title'
+          description: 'Description of tag'
