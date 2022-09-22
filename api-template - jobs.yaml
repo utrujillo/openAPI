@@ -226,6 +226,20 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/standard_response_category"
+    delete:
+      summary: delete a category by id
+      operationId: deleteCategory
+      tags:
+        - Categories
+      parameters:
+        - $ref: "#/components/parameters/string_id_param"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_category"
 components:
   parameters:
     string_id_param:
