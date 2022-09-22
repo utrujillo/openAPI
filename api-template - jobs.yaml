@@ -121,6 +121,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/standard_response_job"
+
+  /categories:
+    x-apigen-binding:
+      model: Categories
+    get:
+      summary: get all categories
+      operationId: getCategories
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: Ok
+          content:
+            applicatin/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_categories"
+    post:
+      summary: create a category
+      operationId: createCategory
+      tags:
+        - Categories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/new_category"
+      responses:
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_category"
+              examples:
+                Ejemplo:
+                  $ref: '#/components/examples/post_category_response_example'                
+        # '400':
+        #   description: Bad Request
+        #   content:
+        #     application/json:
+        #       schema:
+        #         $ref: "#/components/schemas/standard_response_patient"
+        #       examples:
+        #         Ejemplo:
+        #           $ref: '#/components/examples/client_bad_request_response_example'
 components:
   parameters:
     string_id_param:
@@ -324,6 +369,59 @@ components:
         desirable:
           type: string
           example: 'Describe requirements desirables for get job in markdown'
+  
+    standard_response_categories:
+      allOf:
+        - $ref: "#/components/schemas/standard_response_result"
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                categories:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/category"
+    standard_response_category:
+      allOf:
+        - $ref: "#/components/schemas/standard_response_result"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/category"
+    category:
+      x-apigen-mapping:
+        model: Category
+      type: object
+      required:
+        - id
+        - name
+        - description  
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'Tech'
+        surname:
+          type: string
+          example: 'New applications'
+    new_category:
+      x-apigen-mapping:
+        model: Category
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+          example: 'Technology'
+        description:
+          type: string
+          example: 'News'
+
   examples:
     post_job_response_example:
       value:
@@ -367,3 +465,14 @@ components:
           responsabilities: 'Description responsabilities for job in markdown'
           minimum_requirements: 'Describe minimum requirements for job in markdown'
           desirable: 'Describe requirements desirables for get job in markdown'
+    post_category_response_example:
+      value:
+        result:
+          status: true
+          http_code: 201
+          info: 'Created'
+          trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
+        data:
+          id: '6152f5065e6a5d0530211f77'
+          name: 'Technology'
+          description: 'News'
