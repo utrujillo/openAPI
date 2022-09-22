@@ -157,15 +157,15 @@ paths:
               examples:
                 Ejemplo:
                   $ref: '#/components/examples/post_category_response_example'                
-        # '400':
-        #   description: Bad Request
-        #   content:
-        #     application/json:
-        #       schema:
-        #         $ref: "#/components/schemas/standard_response_patient"
-        #       examples:
-        #         Ejemplo:
-        #           $ref: '#/components/examples/client_bad_request_response_example'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_category"
+              examples:
+                Ejemplo:
+                  $ref: '#/components/examples/category_bad_request_response_example'
 components:
   parameters:
     string_id_param:
@@ -476,3 +476,13 @@ components:
           id: '6152f5065e6a5d0530211f77'
           name: 'Technology'
           description: 'News'
+    category_bad_request_response_example:
+      value:
+        result:
+          status: false
+          http_code: 400
+          info: 'Bad Request'
+          trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
+          errors:
+          - code: 1000
+            message: Name '% s' cannot contain a null value
