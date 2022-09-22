@@ -240,6 +240,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/standard_response_category"
+
+  /tags:
+    get:
+      summary: get all tags for jobs
+      operationId: getTags
+      tags:
+        - Tags
+      parameters:
+        - $ref: "#/components/parameters/init_param"
+        - $ref: "#/components/parameters/limit_param"
+        - $ref: "#/components/parameters/total_param"
+        - $ref: "#/components/parameters/select_param"
+        - $ref: "#/components/parameters/exclude_param"
+        - $ref: "#/components/parameters/expand_param"
+        - $ref: "#/components/parameters/order_by_param"
+      responses:
+        '200':
+          description: Ok
+          content:
+            applicatin/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_tags"
 components:
   parameters:
     string_id_param:
@@ -478,7 +500,7 @@ components:
         name:
           type: string
           example: 'Tech'
-        surname:
+        description:
           type: string
           example: 'New applications'
     new_category:
@@ -506,6 +528,37 @@ components:
         description:
           type: string
           example: 'New applications'
+
+    standard_response_tags:
+      allOf:
+        - $ref: "#/components/schemas/standard_response_result"
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/tag"
+    tag:
+      x-apigen-mapping:
+        model: Tag
+      type: object
+      required:
+        - id
+        - name
+        - description  
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'API'
+        description:
+          type: string
+          example: 'Authentication'
 
   examples:
     standard_not_found_response_example:
