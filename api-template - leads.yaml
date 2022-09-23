@@ -94,42 +94,42 @@ paths:
               examples:
                 Ejemplo:
                   $ref: '#/components/examples/standard_not_found_response_example'
-  #   put:
-  #     summary: Update Job
-  #     operationId: updateJob
-  #     tags:
-  #       - Jobs
-  #     parameters:
-  #       - $ref: "#/components/parameters/string_id_param"
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: "#/components/schemas/update_job"
-  #     responses:
-  #       '200':
-  #         description: Ok
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_job"
-  #             examples:
-  #               Ejemplo:
-  #                 $ref: "#/components/schemas/update_job"
-  #   delete:
-  #     summary: delete a job by id
-  #     operationId: deleteJob
-  #     tags:
-  #       - Jobs
-  #     parameters:
-  #       - $ref: "#/components/parameters/string_id_param"
-  #     responses:
-  #       '200':
-  #         description: Ok
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_job"
+    put:
+      summary: Update lead
+      operationId: updateLead
+      tags:
+        - Leads
+      parameters:
+        - $ref: "#/components/parameters/string_id_param"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/update_lead"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_lead"
+              examples:
+                Ejemplo:
+                  $ref: "#/components/schemas/update_lead"
+    delete:
+      summary: delete a lead by id
+      operationId: deleteLead
+      tags:
+        - Leads
+      parameters:
+        - $ref: "#/components/parameters/string_id_param"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_lead"
 
   /interests:
     x-apigen-binding:
@@ -385,6 +385,10 @@ components:
         job:
           type: string
           example: 'API Evangelist'
+        interests:
+          type: array
+          items:
+            $ref: "#/components/schemas/interest"
         message:
           type: string
           example: 'How can job in your company?'
@@ -420,32 +424,32 @@ components:
         message:
           type: string
           example: 'How can work in your company?'
-    update_job:
+    update_lead:
       x-apigen-mapping:
-        model: Job
+        model: Lead
       type: object
       properties:
-        title:
+        name:
           type: string
-          example: 'Title of job'
-        image:
+          example: 'Jhon'
+        last_name:
           type: string
-          example: 'https://host.com/image.png'
-        description:
+          example: 'Doe'
+        phone:
           type: string
-          example: 'Description of job'
-        complement_text:
+          example: '+33 755128967'
+        email:
           type: string
-          example: 'Text complementary for job'
-        responsabilities:
+          example: 'john.doe@company.com'
+        company:
           type: string
-          example: 'Description responsabilities for job in markdown'
-        minimum_requirements:
+          example: 'Cloudappi'
+        job:
           type: string
-          example: 'Describe minimum requirements for job in markdown'
-        desirable:
+          example: 'API Evangelist'
+        message:
           type: string
-          example: 'Describe requirements desirables for get job in markdown'
+          example: 'How can work in your company?'
   
     standard_response_interests:
       allOf:
