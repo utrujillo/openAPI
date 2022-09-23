@@ -1,0 +1,598 @@
+openapi: '3.0.0'
+info:
+  version: 'v1'
+  title: api-leads
+servers:
+  - url: https://pre-api.cloudappi.net/api-jobs/v1
+    description: Development server
+  - url: https://api.cloudappi.net/api-jobs/v1
+    description: Production server
+
+paths:
+  # /jobs:
+  #   x-apigen-binding:
+  #     model: Job
+  #   get:
+  #     summary: Get all jobs
+  #     operationId: getJobs
+  #     tags:
+  #       - Jobs
+  #     parameters:
+  #       - $ref: "#/components/parameters/init_param"
+  #       - $ref: "#/components/parameters/limit_param"
+  #       - $ref: "#/components/parameters/total_param"
+  #       - $ref: "#/components/parameters/select_param"
+  #       - $ref: "#/components/parameters/exclude_param"
+  #       - $ref: "#/components/parameters/expand_param"
+  #       - $ref: "#/components/parameters/order_by_param"
+  #     responses:
+  #       '200':
+  #         description: Ok
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_jobs"
+  #   post:
+  #     summary: Create a job
+  #     operationId: createJob
+  #     tags:
+  #       - Jobs
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/new_job"
+  #     responses:
+  #       '201':
+  #         description: Ok
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_job"
+  #             examples:
+  #               Ejemplo:
+  #                 $ref: "#/components/examples/post_job_response_example"
+  #       '400':
+  #         description: Bad request
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_job"
+  #             examples:
+  #               Ejemplo:
+  #                 $ref: "#components/examples/job_bad_request_response_example"
+  
+  # /jobs/{id}:
+  #   x-apigen-binding:
+  #     model: Job
+  #   get:
+  #     summary: Get job by id
+  #     operationId: getJob
+  #     tags:
+  #       - Jobs
+  #     parameters:
+  #       - $ref: "#/components/parameters/string_id_param"
+  #       - $ref: "#/components/parameters/select_param"
+  #       - $ref: "#/components/parameters/exclude_param"
+  #       - $ref: "#/components/parameters/expand_param"
+  #     responses:
+  #       '200':
+  #         description: Ok
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_job"
+  #             examples:
+  #               Ejemplo:
+  #                 $ref: "#/components/examples/get_job_response_example"
+  #       '404':
+  #         description: Not found
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_category"
+  #             examples:
+  #               Ejemplo:
+  #                 $ref: '#/components/examples/standard_not_found_response_example'
+  #   put:
+  #     summary: Update Job
+  #     operationId: updateJob
+  #     tags:
+  #       - Jobs
+  #     parameters:
+  #       - $ref: "#/components/parameters/string_id_param"
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/update_job"
+  #     responses:
+  #       '200':
+  #         description: Ok
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_job"
+  #             examples:
+  #               Ejemplo:
+  #                 $ref: "#/components/schemas/update_job"
+  #   delete:
+  #     summary: delete a job by id
+  #     operationId: deleteJob
+  #     tags:
+  #       - Jobs
+  #     parameters:
+  #       - $ref: "#/components/parameters/string_id_param"
+  #     responses:
+  #       '200':
+  #         description: Ok
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_job"
+
+  /interests:
+    x-apigen-binding:
+      model: Interests
+    get:
+      summary: get all interets
+      operationId: getInterests
+      tags:
+        - Interests
+      responses:
+        '200':
+          description: Ok
+          content:
+            applicatin/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_interests"
+    post:
+      summary: create a interest
+      operationId: createInterest
+      tags:
+        - Interests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/new_interest"
+      responses:
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_interest"
+              examples:
+                Ejemplo:
+                  $ref: '#/components/examples/post_interest_response_example'                
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_interest"
+              examples:
+                Ejemplo:
+                  $ref: '#/components/examples/interest_bad_request_response_example'
+  # /categories/{id}:
+  #   x-apigen-binding:
+  #     model: Job
+  #   get:
+  #     summary: Get categoriy by id
+  #     operationId: getCategory
+  #     tags:
+  #       - Categories
+  #     parameters:
+  #       - $ref: "#/components/parameters/string_id_param"
+  #       - $ref: "#/components/parameters/select_param"
+  #       - $ref: "#/components/parameters/exclude_param"
+  #       - $ref: "#/components/parameters/expand_param"
+  #     responses:
+  #       '200':
+  #         description: Ok
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_category"
+  #             examples:
+  #               Ejemplo:
+  #                 $ref: '#/components/examples/get_category_response_example' 
+  #       '404':
+  #         description: Not found
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_category"
+  #             examples:
+  #               Ejemplo:
+  #                 $ref: '#/components/examples/standard_not_found_response_example'
+  #   put:
+  #     summary: update a Category
+  #     operationId: updateCategory
+  #     tags:
+  #       - Categories
+  #     parameters:
+  #       - $ref: "#/components/parameters/string_id_param"
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/update_category"
+  #     responses:
+  #       '200':
+  #         description: Ok
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_category"
+  #   delete:
+  #     summary: delete a category by id
+  #     operationId: deleteCategory
+  #     tags:
+  #       - Categories
+  #     parameters:
+  #       - $ref: "#/components/parameters/string_id_param"
+  #     responses:
+  #       '200':
+  #         description: Ok
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/standard_response_category"
+
+components:
+  parameters:
+    string_id_param:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    init_param:
+      in: query
+      name: $init
+      schema:
+        type: integer
+        format: int32
+    limit_param:
+      in: query
+      name: $limit
+      schema:
+        type: integer
+        format: int32
+    total_param:
+      in: query
+      name: $total
+      schema:
+        type: boolean
+    select_param:
+      in: query
+      name: $select
+      schema:
+        type: array
+        items:
+          type: string
+    exclude_param:
+      in: query
+      name: $exclude
+      schema:
+        type: array
+        items:
+          type: string
+    expand_param:
+      in: query
+      name: $expand
+      schema:
+        type: array
+        items:
+          type: string
+    order_by_param:
+      in: query
+      name: $orderby
+      schema:
+        type: array
+        items:
+          type: string
+
+  schemas:
+    standard_response_result:
+      properties:
+        result:
+          type: object
+          properties:
+            status:
+              type: boolean
+              example: true
+            http_code:
+              type: integer
+              example: 200
+            errors:
+              type: array
+              items:
+                $ref: "#/components/schemas/standard_error"
+            info:
+              type: string
+              example: Successfull request.
+            trace_id:
+              type: string
+              example: b8240028-8df4-4019-8b03-182a0a9bc88d
+            num_elements:
+              type: integer
+              example: 1
+          required:
+            - status
+            - http_code
+
+    standard_error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 1003
+        message:
+          type: string
+          example: Attribute with value greather than maximum
+
+    standard_response_jobs:
+      allOf:
+        - $ref: "#/components/schemas/standard_response_result"
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                jobs:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/job"
+    standard_response_job:
+      allOf:
+        - $ref: "#/components/schemas/standard_response_result"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/job"
+    job:
+      x-apigen-mapping:
+        model: Job
+      type: object
+      required:
+        - id
+        - title
+        - image
+      properties:
+        id:
+          type: string
+          example: '6152f5065e6a5d0530211f77'
+        title:
+          type: string
+          example: 'Title of job'
+        image:
+          type: string
+          example: 'https://host.com/image.png'
+        description:
+          type: string
+          example: 'Description of job'
+        complement_text:
+          type: string
+          example: 'Text complementary for job'
+        responsabilities:
+          type: string
+          example: 'Description responsabilities for job in markdown'
+        minimum_requirements:
+          type: string
+          example: 'Describe minimum requirements for job in markdown'
+        desirable:
+          type: string
+          example: 'Describe requirements desirables for get job in markdown'
+       
+    new_job:
+      x-apigen-mapping:
+        model: Job
+      type: object
+      required:
+        - title
+        - image
+        - description
+        - responsabilities
+        - minimum_requirements
+      properties:
+        title:
+          type: string
+          example: 'Title of job'
+        image:
+          type: string
+          example: 'https://host.com/image.png'
+        description:
+          type: string
+          example: 'Description of job'
+        complement_text:
+          type: string
+          example: 'Text complementary for job'
+        responsabilities:
+          type: string
+          example: 'Description responsabilities for job in markdown'
+        minimum_requirements:
+          type: string
+          example: 'Describe minimum requirements for job in markdown'
+        desirable:
+          type: string
+          example: 'Describe requirements desirables for get job in markdown'
+    update_job:
+      x-apigen-mapping:
+        model: Job
+      type: object
+      properties:
+        title:
+          type: string
+          example: 'Title of job'
+        image:
+          type: string
+          example: 'https://host.com/image.png'
+        description:
+          type: string
+          example: 'Description of job'
+        complement_text:
+          type: string
+          example: 'Text complementary for job'
+        responsabilities:
+          type: string
+          example: 'Description responsabilities for job in markdown'
+        minimum_requirements:
+          type: string
+          example: 'Describe minimum requirements for job in markdown'
+        desirable:
+          type: string
+          example: 'Describe requirements desirables for get job in markdown'
+  
+    standard_response_interests:
+      allOf:
+        - $ref: "#/components/schemas/standard_response_result"
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                interest:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/interest"
+    standard_response_interest:
+      allOf:
+        - $ref: "#/components/schemas/standard_response_result"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/interest"
+    interest:
+      x-apigen-mapping:
+        model: Interest
+      type: object
+      required:
+        - id
+        - name
+        - description
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'DevOps'
+        description:
+          type: string
+          example: 'Developer Operations Arquitecture'
+    new_interest:
+      x-apigen-mapping:
+        model: Interest
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+          example: 'DevOps'
+        description:
+          type: string
+          example: 'Developer Operations Arquitecture'
+    update_interest:
+      x-apigen-mapping:
+        model: Interest
+      type: object
+      properties:
+        title:
+          type: string
+          example: 'DevOps'
+        description:
+          type: string
+          example: 'Developer Operation Arquitecture'
+
+  examples:
+    standard_not_found_response_example:
+      value:
+        result:
+          status: false
+          http_code: 404
+          info: 'Not found'
+          trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
+          errors:
+          - code: 1104
+            message: 'No item was found with the identifier provided. Please review:% s'
+    
+    post_job_response_example:
+      value:
+        result:
+          status: true
+          http_code: 201
+          info: 'Created'
+          trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
+        data:
+          id: '6152f5065e6a5d0530211f77'
+          title: 'Title of job'
+          image: 'https://host.com/image.png'
+          description: 'Description of job'
+          complement_text: 'Text complementary for job'
+          responsabilities: 'Description responsabilities for job in markdown'
+          minimum_requirements: 'Describe minimum requirements for job in markdown'
+          desirable: 'Describe requirements desirables for get job in markdown'
+    job_bad_request_response_example:
+      value:
+        result:
+          status: false
+          http_code: 400
+          info: 'Bad request'
+          trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
+          errors:
+          - code: 1000
+            message: Attribute '% s' cannot contain a null value
+    get_job_response_example:
+      value:
+        result:
+          status: true
+          http_code: 200
+          info: 'OK'
+          trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
+        data:
+          id: '6152f5065e6a5d0530211f77'
+          title: 'Title of job'
+          image: 'https://host.com/image.png'
+          description: 'Description of job'
+          complement_text: 'Text complementary for job'
+          responsabilities: 'Description responsabilities for job in markdown'
+          minimum_requirements: 'Describe minimum requirements for job in markdown'
+          desirable: 'Describe requirements desirables for get job in markdown'
+    
+    post_interest_response_example:
+      value:
+        result:
+          status: true
+          http_code: 201
+          info: 'Created'
+          trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
+        data:
+          id: '6152f5065e6a5d0530211f77'
+          name: 'Developer Operations'
+          description: 'Developer Operations Arquitech'    
+    interest_bad_request_response_example:
+      value:
+        result:
+          status: false
+          http_code: 400
+          info: 'Bad Request'
+          trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
+          errors:
+          - code: 1000
+            message: Name '% s' cannot contain a null value
+    get_category_response_example:
+      value:
+        result:
+          status: true
+          http_code: 200
+          info: 'OK'
+          trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
+        data:
+          id: '6152f5065e6a5d0530211f77'
+          title: 'Title category'
+          description: 'Description of category'

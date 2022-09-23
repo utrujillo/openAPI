@@ -90,7 +90,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/standard_response_category"
+                $ref: "#/components/schemas/standard_response_job"
               examples:
                 Ejemplo:
                   $ref: '#/components/examples/standard_not_found_response_example'
