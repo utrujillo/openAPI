@@ -3,97 +3,97 @@ info:
   version: 'v1'
   title: api-leads
 servers:
-  - url: https://pre-api.cloudappi.net/api-jobs/v1
+  - url: https://pre-api.cloudappi.net/api-leads/v1
     description: Development server
-  - url: https://api.cloudappi.net/api-jobs/v1
+  - url: https://api.cloudappi.net/api-leads/v1
     description: Production server
 
 paths:
-  # /jobs:
-  #   x-apigen-binding:
-  #     model: Job
-  #   get:
-  #     summary: Get all jobs
-  #     operationId: getJobs
-  #     tags:
-  #       - Jobs
-  #     parameters:
-  #       - $ref: "#/components/parameters/init_param"
-  #       - $ref: "#/components/parameters/limit_param"
-  #       - $ref: "#/components/parameters/total_param"
-  #       - $ref: "#/components/parameters/select_param"
-  #       - $ref: "#/components/parameters/exclude_param"
-  #       - $ref: "#/components/parameters/expand_param"
-  #       - $ref: "#/components/parameters/order_by_param"
-  #     responses:
-  #       '200':
-  #         description: Ok
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_jobs"
-  #   post:
-  #     summary: Create a job
-  #     operationId: createJob
-  #     tags:
-  #       - Jobs
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: "#/components/schemas/new_job"
-  #     responses:
-  #       '201':
-  #         description: Ok
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_job"
-  #             examples:
-  #               Ejemplo:
-  #                 $ref: "#/components/examples/post_job_response_example"
-  #       '400':
-  #         description: Bad request
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_job"
-  #             examples:
-  #               Ejemplo:
-  #                 $ref: "#components/examples/job_bad_request_response_example"
+  /leads:
+    x-apigen-binding:
+      model: Lead
+    get:
+      summary: Get all leads
+      operationId: getLeads
+      tags:
+        - Leads
+      parameters:
+        - $ref: "#/components/parameters/init_param"
+        - $ref: "#/components/parameters/limit_param"
+        - $ref: "#/components/parameters/total_param"
+        - $ref: "#/components/parameters/select_param"
+        - $ref: "#/components/parameters/exclude_param"
+        - $ref: "#/components/parameters/expand_param"
+        - $ref: "#/components/parameters/order_by_param"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_leads"
+    post:
+      summary: Create a lead
+      operationId: createLead
+      tags:
+        - Leads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/new_lead"
+      responses:
+        '201':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_lead"
+              examples:
+                Ejemplo:
+                  $ref: "#/components/examples/post_lead_response_example"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_lead"
+              examples:
+                Ejemplo:
+                  $ref: "#components/examples/lead_bad_request_response_example"
   
-  # /jobs/{id}:
-  #   x-apigen-binding:
-  #     model: Job
-  #   get:
-  #     summary: Get job by id
-  #     operationId: getJob
-  #     tags:
-  #       - Jobs
-  #     parameters:
-  #       - $ref: "#/components/parameters/string_id_param"
-  #       - $ref: "#/components/parameters/select_param"
-  #       - $ref: "#/components/parameters/exclude_param"
-  #       - $ref: "#/components/parameters/expand_param"
-  #     responses:
-  #       '200':
-  #         description: Ok
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_job"
-  #             examples:
-  #               Ejemplo:
-  #                 $ref: "#/components/examples/get_job_response_example"
-  #       '404':
-  #         description: Not found
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_category"
-  #             examples:
-  #               Ejemplo:
-  #                 $ref: '#/components/examples/standard_not_found_response_example'
+  /leads/{id}:
+    x-apigen-binding:
+      model: Lead
+    get:
+      summary: Get lead by id
+      operationId: getLead
+      tags:
+        - Leads
+      parameters:
+        - $ref: "#/components/parameters/string_id_param"
+        - $ref: "#/components/parameters/select_param"
+        - $ref: "#/components/parameters/exclude_param"
+        - $ref: "#/components/parameters/expand_param"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_lead"
+              examples:
+                Ejemplo:
+                  $ref: "#/components/examples/get_lead_response_example"
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_lead"
+              examples:
+                Ejemplo:
+                  $ref: '#/components/examples/standard_not_found_response_example'
   #   put:
   #     summary: Update Job
   #     operationId: updateJob
@@ -133,10 +133,10 @@ paths:
 
   /interests:
     x-apigen-binding:
-      model: Interests
+      model: Interest
     get:
       summary: get all interets
-      operationId: getInterests
+      operationId: getInterest
       tags:
         - Interests
       responses:
@@ -175,71 +175,71 @@ paths:
               examples:
                 Ejemplo:
                   $ref: '#/components/examples/interest_bad_request_response_example'
-  # /categories/{id}:
-  #   x-apigen-binding:
-  #     model: Job
-  #   get:
-  #     summary: Get categoriy by id
-  #     operationId: getCategory
-  #     tags:
-  #       - Categories
-  #     parameters:
-  #       - $ref: "#/components/parameters/string_id_param"
-  #       - $ref: "#/components/parameters/select_param"
-  #       - $ref: "#/components/parameters/exclude_param"
-  #       - $ref: "#/components/parameters/expand_param"
-  #     responses:
-  #       '200':
-  #         description: Ok
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_category"
-  #             examples:
-  #               Ejemplo:
-  #                 $ref: '#/components/examples/get_category_response_example' 
-  #       '404':
-  #         description: Not found
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_category"
-  #             examples:
-  #               Ejemplo:
-  #                 $ref: '#/components/examples/standard_not_found_response_example'
-  #   put:
-  #     summary: update a Category
-  #     operationId: updateCategory
-  #     tags:
-  #       - Categories
-  #     parameters:
-  #       - $ref: "#/components/parameters/string_id_param"
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: "#/components/schemas/update_category"
-  #     responses:
-  #       '200':
-  #         description: Ok
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_category"
-  #   delete:
-  #     summary: delete a category by id
-  #     operationId: deleteCategory
-  #     tags:
-  #       - Categories
-  #     parameters:
-  #       - $ref: "#/components/parameters/string_id_param"
-  #     responses:
-  #       '200':
-  #         description: Ok
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/standard_response_category"
+  /interests/{id}:
+    x-apigen-binding:
+      model: Interest
+    get:
+      summary: Get interest by id
+      operationId: getInterest
+      tags:
+        - Interests
+      parameters:
+        - $ref: "#/components/parameters/string_id_param"
+        - $ref: "#/components/parameters/select_param"
+        - $ref: "#/components/parameters/exclude_param"
+        - $ref: "#/components/parameters/expand_param"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_interest"
+              examples:
+                Ejemplo:
+                  $ref: '#/components/examples/get_interest_response_example' 
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_interest"
+              examples:
+                Ejemplo:
+                  $ref: '#/components/examples/standard_not_found_response_example'
+    put:
+      summary: update a Interest
+      operationId: updateInterest
+      tags:
+        - Interests
+      parameters:
+        - $ref: "#/components/parameters/string_id_param"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/update_interest"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_interest"
+    delete:
+      summary: delete a interest by id
+      operationId: deleteInterest
+      tags:
+        - Interests
+      parameters:
+        - $ref: "#/components/parameters/string_id_param"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/standard_response_interest"
 
 components:
   parameters:
@@ -334,7 +334,7 @@ components:
           type: string
           example: Attribute with value greather than maximum
 
-    standard_response_jobs:
+    standard_response_leads:
       allOf:
         - $ref: "#/components/schemas/standard_response_result"
         - type: object
@@ -342,83 +342,84 @@ components:
             data:
               type: object
               properties:
-                jobs:
+                leads:
                   type: array
                   items:
-                    $ref: "#/components/schemas/job"
-    standard_response_job:
+                    $ref: "#/components/schemas/lead"
+    standard_response_lead:
       allOf:
         - $ref: "#/components/schemas/standard_response_result"
         - type: object
           properties:
             data:
-              $ref: "#/components/schemas/job"
-    job:
+              $ref: "#/components/schemas/lead"
+    lead:
       x-apigen-mapping:
-        model: Job
+        model: Lead
       type: object
       required:
         - id
-        - title
-        - image
+        - name
+        - last_name
+        - phone
+        - email
       properties:
         id:
           type: string
           example: '6152f5065e6a5d0530211f77'
-        title:
+        name:
           type: string
-          example: 'Title of job'
-        image:
+          example: 'John'
+        last_name:
           type: string
-          example: 'https://host.com/image.png'
-        description:
+          example: 'Doe'
+        phone:
           type: string
-          example: 'Description of job'
-        complement_text:
+          example: '+55 712907856'
+        email:
           type: string
-          example: 'Text complementary for job'
-        responsabilities:
+          example: 'jon.doe@company.com'
+        company:
           type: string
-          example: 'Description responsabilities for job in markdown'
-        minimum_requirements:
+          example: 'Cloudappi'
+        job:
           type: string
-          example: 'Describe minimum requirements for job in markdown'
-        desirable:
+          example: 'API Evangelist'
+        message:
           type: string
-          example: 'Describe requirements desirables for get job in markdown'
+          example: 'How can job in your company?'
        
-    new_job:
+    new_lead:
       x-apigen-mapping:
-        model: Job
+        model: Lead
       type: object
       required:
-        - title
-        - image
-        - description
-        - responsabilities
-        - minimum_requirements
+        - name
+        - last_name
+        - phone
+        - email
       properties:
-        title:
+        name:
           type: string
-          example: 'Title of job'
-        image:
+          example: 'Jhon'
+        last_name:
           type: string
-          example: 'https://host.com/image.png'
-        description:
+          example: 'Doe'
+        phone:
           type: string
-          example: 'Description of job'
-        complement_text:
+          example: '+33 755128967'
+        email:
           type: string
-          example: 'Text complementary for job'
-        responsabilities:
+          example: 'john.doe@company.com'
+        company:
           type: string
-          example: 'Description responsabilities for job in markdown'
-        minimum_requirements:
+          example: 'Cloudappi'
+        job:
           type: string
-          example: 'Describe minimum requirements for job in markdown'
-        desirable:
+          example: 'API Evangelist'
+        message:
           type: string
-          example: 'Describe requirements desirables for get job in markdown'
+          example: 'How can work in your company?'
     update_job:
       x-apigen-mapping:
         model: Job
@@ -521,7 +522,7 @@ components:
           - code: 1104
             message: 'No item was found with the identifier provided. Please review:% s'
     
-    post_job_response_example:
+    post_lead_response_example:
       value:
         result:
           status: true
@@ -530,14 +531,14 @@ components:
           trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
         data:
           id: '6152f5065e6a5d0530211f77'
-          title: 'Title of job'
-          image: 'https://host.com/image.png'
-          description: 'Description of job'
-          complement_text: 'Text complementary for job'
-          responsabilities: 'Description responsabilities for job in markdown'
-          minimum_requirements: 'Describe minimum requirements for job in markdown'
-          desirable: 'Describe requirements desirables for get job in markdown'
-    job_bad_request_response_example:
+          name: 'Jhon'
+          last_name: 'Doe'
+          phone: '+33 755128967'
+          email: 'jhon.doe@company.com'
+          company: 'Cloudappi'
+          job: 'API Evangeliest'
+          message: 'How can work in your company?'
+    lead_bad_request_response_example:
       value:
         result:
           status: false
@@ -547,7 +548,7 @@ components:
           errors:
           - code: 1000
             message: Attribute '% s' cannot contain a null value
-    get_job_response_example:
+    get_lead_response_example:
       value:
         result:
           status: true
@@ -556,13 +557,13 @@ components:
           trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
         data:
           id: '6152f5065e6a5d0530211f77'
-          title: 'Title of job'
-          image: 'https://host.com/image.png'
-          description: 'Description of job'
-          complement_text: 'Text complementary for job'
-          responsabilities: 'Description responsabilities for job in markdown'
-          minimum_requirements: 'Describe minimum requirements for job in markdown'
-          desirable: 'Describe requirements desirables for get job in markdown'
+          name: 'Jhon'
+          last_name: 'Doe'
+          phone: '+33 755128967'
+          email: 'jhon.doe@company.com'
+          company: 'Cloudappi'
+          job: 'API Evangeliest'
+          message: 'How can work in your company?'
     
     post_interest_response_example:
       value:
@@ -585,7 +586,7 @@ components:
           errors:
           - code: 1000
             message: Name '% s' cannot contain a null value
-    get_category_response_example:
+    get_interest_response_example:
       value:
         result:
           status: true
@@ -594,5 +595,5 @@ components:
           trace_id: b8240028-8df4-4019-8b03-182a0a9bc88d
         data:
           id: '6152f5065e6a5d0530211f77'
-          title: 'Title category'
-          description: 'Description of category'
+          title: 'Developer operations'
+          description: 'Developer operations arquitecture'
